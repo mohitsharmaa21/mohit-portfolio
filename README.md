@@ -259,7 +259,7 @@ Output will be in the `dist/` folder, ready for deployment.
 
 <br/>
 
-📧 **mohitsharma44@gmail.com**
+📧 **mohitsharam44@gmail.com**
 
 </div>
 

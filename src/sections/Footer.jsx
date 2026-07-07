@@ -39,7 +39,7 @@ const socials = [
   {
     Icon: FaFileLines,
     label: "Resume",
-    href: "/Mohit_Resume_updated.pdf",
+    href: "https://drive.google.com/file/d/1xR7dOvLYjWXLquoOi4FGBPBq2HekyZ7a/view?usp=drive_link",
     color: "#c084fc",
     glow: "rgba(192,132,252,0.45)",
     bg: "rgba(192,132,252,0.08)",
@@ -161,8 +161,14 @@ const Footer = () => {
             <motion.a
               key={label}
               href={href}
+              onClick={(e) => {
+                if (label === "Resume") {
+                  e.preventDefault();
+                  window.dispatchEvent(new CustomEvent("open-resume"));
+                }
+              }}
               aria-label={label}
-              target="_blank"
+              target={label === "Resume" ? undefined : "_blank"}
               rel="noopener noreferrer"
               className="relative flex flex-col items-center gap-1.5 group"
               whileHover="hover"

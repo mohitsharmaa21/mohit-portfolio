@@ -156,14 +156,13 @@ const Home = React.forwardRef((props, ref) => {
               >
                 View Projects
               </a>
-              <a
-                href="/Mohit_Resume_updated.pdf"
-                download
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent("open-resume"))}
                 className="px-6 py-3 rounded-full text-base font-semibold text-black bg-white 
-                hover:bg-gray-200 shadow-lg hover:scale-105 transition-all duration-300"
+                hover:bg-gray-200 shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
               >
                 My Resume
-              </a>
+              </button>
               <a
                 href="#contact"
                 className="px-6 py-3 rounded-full text-base font-semibold text-white border border-white/20

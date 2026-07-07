@@ -15,7 +15,7 @@ const socials = [
   { Icon: SiKaggle, label: "Kaggle", href: "https://www.kaggle.com/mohitsharma7231", glow: "rgba(6,182,212,0.2)" },
   { Icon: FaLinkedinIn, label: "LinkedIn", href: "https://www.linkedin.com/in/mohit-sharma2005", glow: "rgba(59,130,246,0.2)" },
   { Icon: SiOrcid, label: "ORCID", href: "https://orcid.org/0009-0007-3823-0898", glow: "rgba(163,230,53,0.2)" },
-  { Icon: FaFileLines, label: "Resume", href: "/Mohit_Resume_updated.pdf", glow: "rgba(192,132,252,0.2)" },
+  { Icon: FaFileLines, label: "Resume", href: "https://drive.google.com/file/d/1xR7dOvLYjWXLquoOi4FGBPBq2HekyZ7a/view?usp=drive_link", glow: "rgba(192,132,252,0.2)" },
 ];
 
 export default function Contact() {
@@ -51,7 +51,7 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      const toEmail = "mohitsharma44@gmail.com";
+      const toEmail = "mohitsharam44@gmail.com";
       const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
       const body = encodeURIComponent(
         `Hi Mohit,\n\nI reached out via your portfolio website.\n\nHere are my details:\n- Name: ${formData.name}\n- Email: ${formData.email}\n- Topic: ${formData.service}\n\nBrief Idea:\n${formData.idea}\n\nLet's connect!`
@@ -100,7 +100,7 @@ export default function Contact() {
             <h3 className="text-xl font-bold text-white mb-2">Direct Channels</h3>
             
             <a 
-              href="mailto:mohitsharma44@gmail.com" 
+              href="mailto:mohitsharam44@gmail.com" 
               className="flex items-center gap-4 text-gray-300 hover:text-cyan-300 hover:bg-white/5 p-3 rounded-xl border border-transparent hover:border-white/10 transition-all cursor-pointer"
             >
               <div className="p-3 rounded-lg bg-white/5 border border-white/10 text-cyan-400">
@@ -108,7 +108,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-[10px] text-gray-500 font-mono uppercase">Drop an Email</p>
-                <span className="text-sm font-semibold">mohitsharma44@gmail.com</span>
+                <span className="text-sm font-semibold">mohitsharam44@gmail.com</span>
               </div>
             </a>
 
@@ -131,7 +131,13 @@ export default function Contact() {
                 <motion.a
                   key={sidx}
                   href={href}
-                  target="_blank"
+                  onClick={(e) => {
+                    if (label === "Resume") {
+                      e.preventDefault();
+                      window.dispatchEvent(new CustomEvent("open-resume"));
+                    }
+                  }}
+                  target={label === "Resume" ? undefined : "_blank"}
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white transition-all"
                   whileHover={{ 
