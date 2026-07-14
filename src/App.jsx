@@ -42,20 +42,23 @@ export default function App() {
       {/* Homepage always present (masked reveal) */}
       <Home introDone={introDone} />
 
-      <QuickStats />
-      <About />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Research />
-      <Patent />
-      <Achievements />
-      <Certifications />
-      <Leadership />
-      <Community />
-      <StartupJourney />
-      <ProfileLinks />
-      <Contact />
+      <main>
+        <QuickStats />
+        <About />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Research />
+        <Patent />
+        <Achievements />
+        <Certifications />
+        <Leadership />
+        <Community />
+        <StartupJourney />
+        <ProfileLinks />
+        <Contact />
+      </main>
+
       <Footer />
 
       {/* Global Resume Preview Modal */}

@@ -502,6 +502,9 @@ export default function Research() {
                       src={currentGalleryImages[activeImgIdx]?.url}
                       alt={currentGalleryImages[activeImgIdx]?.title}
                       className="max-h-[65vh] max-w-full object-contain rounded-2xl shadow-2xl border border-white/10"
+                      loading="lazy"
+                      width="800"
+                      height="600"
                     />
                   </motion.div>
                 </AnimatePresence>

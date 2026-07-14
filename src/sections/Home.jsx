@@ -223,6 +223,8 @@ const Home = React.forwardRef((props, ref) => {
                 src={mohitProfile}
                 alt="Mohit Sharma profile photo"
                 className="w-full h-full object-cover select-none pointer-events-none group-hover:scale-105 transition-transform duration-500"
+                width="360"
+                height="360"
               />
             </div>
           </div>

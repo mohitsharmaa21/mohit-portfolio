@@ -199,8 +199,9 @@ export default function CertificatesCarousel() {
               <button
                 onClick={() => setSelectedCert(null)}
                 className="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-black/60 border border-white/10 hover:bg-white/10 text-white/80 hover:text-white transition-colors cursor-pointer"
+                aria-label="Close modal"
               >
-                <FaTimes size={14} />
+                <FaTimes size={14} aria-hidden="true" />
               </button>
 
               {/* Certificate Image Viewport */}
@@ -209,6 +210,9 @@ export default function CertificatesCarousel() {
                   src={selectedCert.image}
                   alt={selectedCert.title}
                   className="max-h-[70vh] w-auto object-contain rounded-xl shadow-lg border border-white/5"
+                  loading="lazy"
+                  width="800"
+                  height="600"
                   onError={(e) => {
                     // Fallback to stylized mock cert in modal if image missing
                     e.target.style.display = "none";
@@ -298,6 +302,9 @@ function EnvelopeCard({ cert, isActive, onOpenModal }) {
               src={cert.image}
               alt={cert.title}
               className="absolute inset-0 w-full h-full object-cover rounded-t-xl z-20 pointer-events-none opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+              loading="lazy"
+              width="240"
+              height="250"
               onError={(e) => { e.target.style.display = "none"; }}
             />
           )}

@@ -320,6 +320,9 @@ export default function StartupJourney() {
                           src={card.image}
                           alt={card.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                          width="310"
+                          height="180"
                         />
                         {/* Zoom overlay on image */}
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -432,6 +435,9 @@ export default function StartupJourney() {
                       src={startupMoments[lightboxIdx].image}
                       alt={startupMoments[lightboxIdx].title}
                       className="max-h-[65vh] max-w-full object-contain rounded-2xl shadow-2xl border border-white/10"
+                      loading="lazy"
+                      width="800"
+                      height="600"
                     />
                   </motion.div>
                 </AnimatePresence>

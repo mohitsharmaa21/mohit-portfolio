@@ -37,6 +37,9 @@ export default function About() {
               src={mohitProfile} 
               alt="Mohit Sharma portrait" 
               className="w-full h-full object-cover"
+              loading="lazy"
+              width="240"
+              height="240"
             />
           </motion.div>
 

@@ -139,6 +139,7 @@ export default function Contact() {
                   }}
                   target={label === "Resume" ? undefined : "_blank"}
                   rel="noopener noreferrer"
+                  aria-label={`Visit Mohit's ${label}`}
                   className="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white transition-all"
                   whileHover={{ 
                     scale: 1.15,
@@ -146,7 +147,7 @@ export default function Contact() {
                     borderColor: "rgba(255,255,255,0.2)"
                   }}
                 >
-                  <Icon className="text-lg" />
+                  <Icon className="text-lg" aria-hidden="true" />
                 </motion.a>
               ))}
             </div>
@@ -168,10 +169,11 @@ export default function Contact() {
           <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
             {/* Name */}
             <div className="flex flex-col">
-              <label className="mb-1 text-xs font-semibold text-gray-400">
+              <label htmlFor="name-input" className="mb-1 text-xs font-semibold text-gray-400">
                 Name <span className="text-red-500">*</span>
               </label>
               <input
+                id="name-input"
                 type="text"
                 name="name"
                 placeholder="Your Name"
@@ -188,10 +190,11 @@ export default function Contact() {
 
             {/* Email */}
             <div className="flex flex-col">
-              <label className="mb-1 text-xs font-semibold text-gray-400">
+              <label htmlFor="email-input" className="mb-1 text-xs font-semibold text-gray-400">
                 Email <span className="text-red-500">*</span>
               </label>
               <input
+                id="email-input"
                 type="email"
                 name="email"
                 placeholder="Your Email"
@@ -208,10 +211,11 @@ export default function Contact() {
 
             {/* Service Dropdown */}
             <div className="flex flex-col">
-              <label className="mb-1 text-xs font-semibold text-gray-400">
+              <label htmlFor="service-select" className="mb-1 text-xs font-semibold text-gray-400">
                 Something In Mind? <span className="text-red-500">*</span>
               </label>
               <select
+                id="service-select"
                 name="service"
                 value={formData.service}
                 onChange={handleChange}
@@ -244,10 +248,11 @@ export default function Contact() {
 
             {/* Idea */}
             <div className="flex flex-col">
-              <label className="mb-1 text-xs font-semibold text-gray-400">
+              <label htmlFor="idea-input" className="mb-1 text-xs font-semibold text-gray-400">
                 Brief Idea <span className="text-red-500">*</span>
               </label>
               <textarea
+                id="idea-input"
                 name="idea"
                 rows={4}
                 placeholder="Explain the requirements, dataset details, or project goals..."
