@@ -229,16 +229,18 @@ export default function Achievements() {
     setActiveImgIdx(newIdx);
   };
 
-  // 3-Second Auto-Flip Effect
+  const [isHovered, setIsHovered] = useState(false);
+ 
+  // 6-Second Auto-Flip Effect with Hover/Touch Pause
   useEffect(() => {
-    if (!activeGallery || currentImages.length === 0) return;
+    if (!activeGallery || currentImages.length === 0 || isHovered) return;
     
     const timer = setTimeout(() => {
       handleNav((activeImgIdx + 1) % currentImages.length, 1);
-    }, 3000);
+    }, 6000);
     
     return () => clearTimeout(timer);
-  }, [activeGallery, activeImgIdx, currentImages.length]);
+  }, [activeGallery, activeImgIdx, currentImages.length, isHovered]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -469,10 +471,14 @@ export default function Achievements() {
                 <FaChevronRight size={16} />
               </button>
 
-              {/* Image Viewport with 3D Flip Transitions */}
+              {/* Image Viewport with 3D Flip Transitions (Hover/Touch to Pause Auto-Flip) */}
               <div 
                 className="w-full flex items-center justify-center bg-black min-h-[350px] relative overflow-hidden py-8 px-12" 
                 style={{ perspective: "1200px" }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onTouchStart={() => setIsHovered(true)}
+                onTouchEnd={() => setIsHovered(false)}
               >
                 <AnimatePresence initial={false} custom={direction}>
                   <motion.div

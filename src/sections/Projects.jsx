@@ -1,5 +1,5 @@
 import React from "react"; 
-import { motion, useScroll, AnimatePresence } from "framer-motion"; 
+import { motion, useScroll, AnimatePresence, useTransform } from "framer-motion"; 
 
 // Importing project images
 import purchaseIntentImg from "../assets/purchase_intent.png";
@@ -86,6 +86,15 @@ export default function Projects() {
 
   const activeProject = projects[activeIndex]; 
 
+  // Smooth scroll transitions mapping scrollYProgress to position/opacity/scale
+  const opacity0 = useTransform(scrollYProgress, [0, 0.42, 0.58, 1], [1, 1, 0, 0]);
+  const y0 = useTransform(scrollYProgress, [0, 0.42, 0.58, 1], [0, 0, -60, -60]);
+  const scale0 = useTransform(scrollYProgress, [0, 0.42, 0.58, 1], [1, 1, 0.96, 0.96]);
+
+  const opacity1 = useTransform(scrollYProgress, [0, 0.42, 0.58, 1], [0, 0, 1, 1]);
+  const y1 = useTransform(scrollYProgress, [0, 0.42, 0.58, 1], [60, 60, 0, 0]);
+  const scale1 = useTransform(scrollYProgress, [0, 0.42, 0.58, 1], [0.96, 0.96, 1, 1]);
+
   return (
     <section
       id="projects"
@@ -101,19 +110,25 @@ export default function Projects() {
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
         
         {/* Section Title */}
-        <h2 className={`text-4xl sm:text-5xl font-extrabold mt-8 pb-3 text-center z-10 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400`}>
+        <h2 className="text-4xl sm:text-5xl font-extrabold mt-8 pb-3 text-center z-10 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400">
           Featured Projects 
         </h2>
 
         {/* Main Project Display Area */}
         <div className={`relative w-full flex-1 flex items-center justify-center ${isMobile ? "-mt-4" : ""}`}>
           {projects.map((project, idx) => (
-            <div
+            <motion.div
               key={project.title}
-              className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ${
-                activeIndex === idx ? "opacity-100 z-20 scale-100" : "opacity-0 z-0 scale-95 pointer-events-none"
-              }`}
-              style={{ width: "90%", maxWidth: "1200px" }}
+              style={{
+                width: "90%",
+                maxWidth: "1200px",
+                opacity: idx === 0 ? opacity0 : opacity1,
+                y: idx === 0 ? y0 : y1,
+                scale: idx === 0 ? scale0 : scale1,
+                pointerEvents: activeIndex === idx ? "auto" : "none",
+                zIndex: activeIndex === idx ? 20 : 0,
+              }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
             >
               {/* Animate project title when switching */}
               <AnimatePresence mode="wait">
@@ -166,45 +181,56 @@ export default function Projects() {
                   </ul>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* View Project Button Controls */}
-        <div className={`absolute ${isMobile ? "bottom-14" : "bottom-8"} z-30 flex flex-wrap justify-center gap-3`}>
-          {activeProject?.hasDeployment && (
-            <a
-              href={activeProject?.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-6 py-2.5 sm:px-8 sm:py-3 font-bold rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white text-xs sm:text-sm hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:scale-105 transition-all duration-300"
-              aria-label={`View Live ${activeProject?.title}`}
+        <div className={`absolute ${isMobile ? "bottom-14" : "bottom-8"} z-30 w-full flex justify-center px-4`}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="flex flex-wrap justify-center gap-3"
             >
-              View Live Project
-            </a>
-          )}
-          {activeProject?.github && (
-            <a
-              href={activeProject?.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-6 py-2.5 sm:px-8 sm:py-3 font-bold rounded-full bg-gray-900 border border-white/20 text-white text-xs sm:text-sm hover:bg-gray-800 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-300"
-              aria-label={`View GitHub Repo`}
-            >
-              GitHub Repo
-            </a>
-          )}
-          {activeProject?.kaggle && (
-            <a
-              href={activeProject?.kaggle}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-6 py-2.5 sm:px-8 sm:py-3 font-bold rounded-full bg-blue-950 border border-blue-500/30 text-cyan-400 text-xs sm:text-sm hover:bg-blue-900 hover:shadow-[0_0_15px_rgba(6,182,212,0.25)] hover:scale-105 transition-all duration-300"
-              aria-label={`View Kaggle Notebook`}
-            >
-              Kaggle Notebook
-            </a>
-          )}
+              {activeProject?.hasDeployment && (
+                <a
+                  href={activeProject?.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-2.5 sm:px-8 sm:py-3 font-bold rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white text-xs sm:text-sm hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:scale-105 transition-all duration-300"
+                  aria-label={`View Live ${activeProject?.title}`}
+                >
+                  View Live Project
+                </a>
+              )}
+              {activeProject?.github && (
+                <a
+                  href={activeProject?.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-2.5 sm:px-8 sm:py-3 font-bold rounded-full bg-gray-900 border border-white/20 text-white text-xs sm:text-sm hover:bg-gray-800 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-300"
+                  aria-label={`View GitHub Repo`}
+                >
+                  GitHub Repo
+                </a>
+              )}
+              {activeProject?.kaggle && (
+                <a
+                  href={activeProject?.kaggle}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-2.5 sm:px-8 sm:py-3 font-bold rounded-full bg-blue-950 border border-blue-500/30 text-cyan-400 text-xs sm:text-sm hover:bg-blue-900 hover:shadow-[0_0_15px_rgba(6,182,212,0.25)] hover:scale-105 transition-all duration-300"
+                  aria-label={`View Kaggle Notebook`}
+                >
+                  Kaggle Notebook
+                </a>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
