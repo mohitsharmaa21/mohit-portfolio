@@ -313,17 +313,17 @@ export default function Research() {
                     {/* Combined Title & Abstract Button (2nd button) */}
                     <button
                       onClick={() => setSelectedPaper(pub)}
-                      className="relative p-[1.5px] rounded-md overflow-hidden group/btn hover:scale-[1.02] transition-all duration-300 w-full cursor-pointer"
+                      className={`w-full py-2.5 rounded-md border text-xs font-bold uppercase tracking-wider text-center transition-all duration-300 cursor-pointer active:scale-[0.98] ${
+                        pub.glow === "cyan"
+                          ? "border-cyan-500/20 bg-black/40 text-gray-300 hover:text-white hover:border-cyan-400 hover:bg-cyan-500/10 hover:shadow-[0_0_12px_rgba(6,182,212,0.25)]"
+                          : pub.glow === "purple"
+                          ? "border-purple-500/20 bg-black/40 text-gray-300 hover:text-white hover:border-purple-400 hover:bg-purple-500/10 hover:shadow-[0_0_12px_rgba(168,85,247,0.25)]"
+                          : "border-emerald-500/20 bg-black/40 text-gray-300 hover:text-white hover:border-emerald-400 hover:bg-emerald-500/10 hover:shadow-[0_0_12px_rgba(16,185,129,0.25)]"
+                      }`}
                     >
-                      <span 
-                        className="absolute inset-0 w-[200%] h-[200%] -top-[50%] -left-[50%] animate-gold-border opacity-75"
-                        style={{ background: getGlowGradient(pub.glow) }}
-                      />
-                      <span className="relative block px-3 py-2 bg-black rounded-[5px] text-xs font-bold uppercase tracking-wider text-center text-gray-300 group-hover/btn:text-white transition-colors duration-300">
-                        Title & Abstract
-                      </span>
+                      Title & Abstract
                     </button>
-
+ 
                     {/* Paper Preview Link (3rd button) */}
                     {pub.previewLink && (
                       <button
@@ -334,19 +334,19 @@ export default function Research() {
                             window.open(pub.previewLink, "_blank", "noopener,noreferrer");
                           }
                         }}
-                        className="relative p-[1.5px] rounded-md overflow-hidden group/btn hover:scale-[1.02] transition-all duration-300 block w-full text-left cursor-pointer"
+                        className={`w-full py-2.5 rounded-md border text-xs font-bold uppercase tracking-wider text-center transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] ${
+                          pub.glow === "cyan"
+                            ? "border-cyan-400/40 bg-cyan-500/5 text-cyan-400 hover:text-cyan-300 hover:border-cyan-400 hover:bg-cyan-500/15 hover:shadow-[0_0_12px_rgba(6,182,212,0.35)]"
+                            : pub.glow === "purple"
+                            ? "border-purple-400/40 bg-purple-500/5 text-purple-400 hover:text-purple-300 hover:border-purple-400 hover:bg-purple-500/15 hover:shadow-[0_0_12px_rgba(168,85,247,0.35)]"
+                            : "border-emerald-400/40 bg-emerald-500/5 text-emerald-400 hover:text-emerald-300 hover:border-emerald-400 hover:bg-emerald-500/15 hover:shadow-[0_0_12px_rgba(16,185,129,0.35)]"
+                        }`}
                       >
-                        <span 
-                          className="absolute inset-0 w-[200%] h-[200%] -top-[50%] -left-[50%] animate-gold-border opacity-75"
-                          style={{ background: getGlowGradient(pub.glow) }}
-                        />
-                        <span className="relative flex items-center justify-center gap-2 px-3 py-2 bg-black rounded-[5px] text-xs font-bold uppercase tracking-wider text-center text-yellow-500 group-hover/btn:text-yellow-400 transition-colors duration-300">
-                          <span>Paper Preview</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"/>
-                            <polyline points="7 7 17 7 17 17"/>
-                          </svg>
-                        </span>
+                        <span>Paper Preview</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"/>
+                          <polyline points="7 7 17 7 17 17"/>
+                        </svg>
                       </button>
                     )}
                   </div>

@@ -26,38 +26,40 @@ export default function OverlayMenu({ isOpen, onClose }) {
             <FiX />
           </button>
 
-          {/* Menu Links */}
-          <ul className="space-y-6 text-center">
-            {[
-              "Home",
-              "Stats",
-              "About",
-              "Experience",
-              "Projects",
-              "Skills",
-              "Research",
-              "Patent",
-              "Certifications",
-              "Achievements",
-              "Leadership",
-              "Contact",
-            ].map((item, index) => (
-              <motion.li
-                key={item}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-              >
-                <a
-                  href={`#${item.toLowerCase()}`}
-                  onClick={onClose}
-                  className="text-4xl text-white font-semibold hover:text-pink-400 transition-colors duration-300"
+          {/* Menu Links with scrolling support for small screen heights */}
+          <div className="max-h-[80vh] overflow-y-auto py-8 px-6 w-full flex justify-center scrollbar-none">
+            <ul className="space-y-3 sm:space-y-4 md:space-y-5 text-center">
+              {[
+                "Home",
+                "Stats",
+                "About",
+                "Experience",
+                "Projects",
+                "Skills",
+                "Research",
+                "Patent",
+                "Certifications",
+                "Achievements",
+                "Leadership",
+                "Contact",
+              ].map((item, index) => (
+                <motion.li
+                  key={item}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + index * 0.05 }}
                 >
-                  {item}
-                </a>
-              </motion.li>
-            ))}
-          </ul>
+                  <a
+                    href={`#${item.toLowerCase()}`}
+                    onClick={onClose}
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-semibold hover:text-pink-400 transition-colors duration-300 block py-1"
+                  >
+                    {item}
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
