@@ -39,7 +39,7 @@ const socials = [
   {
     Icon: FaFileLines,
     label: "Resume",
-    href: "https://drive.google.com/file/d/1xR7dOvLYjWXLquoOi4FGBPBq2HekyZ7a/view?usp=drive_link",
+    href: "https://drive.google.com/file/d/1F28YWbQ8FCX3h6HqAeioSUXSOWRLb82A/view?usp=drive_link",
     color: "#c084fc",
     glow: "rgba(192,132,252,0.45)",
     bg: "rgba(192,132,252,0.08)",

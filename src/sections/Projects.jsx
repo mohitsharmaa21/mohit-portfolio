@@ -3,7 +3,7 @@ import { motion, useScroll, AnimatePresence, useTransform } from "framer-motion"
 
 // Importing project images
 import purchaseIntentImg from "../assets/purchase_intent.png";
-import fakeNewsImg from "../assets/fake_news.png";
+import demandForecastingImg from "../assets/demand_forecasting.png";
 
 const MH3 = motion.h3; 
 
@@ -50,18 +50,20 @@ export default function Projects() {
         kaggle: "https://www.kaggle.com/code/mohitsharma7231/online-shoppers-intention-lightgbm-model#Model-Evaluation-&-Results"
       },
       {
-        title: "Fake News Detection",
-        subtitle: "Fake News Detection using Deep Learning",
-        link: "#",
-        hasDeployment: false,
+        title: "Demand Forecasting AI",
+        subtitle: "Real-Time Product Demand Forecasting System",
+        link: "https://demand-forecasting-ai.netlify.app/",
+        hasDeployment: true,
         bgColor: "#1c0b2b", // cosmic deep purple
-        image: fakeNewsImg,
-        description: "Developed a deep learning–based text classification model using DNN, CNN, and LSTM architectures to identify fake news articles from real news.",
+        image: demandForecastingImg,
+        description: "Developed an end-to-end demand forecasting system predicting future product demand using advanced time-series analysis and machine learning.",
         bullets: [
-          "Implemented tokenization, TF-IDF vectorization, and data scaling pipelines.",
-          "Trained using Python, Scikit-learn, and TensorFlow.",
-          "Achieved ~99% test accuracy on test datasets."
-        ]
+          "Engineered time-series forecasting models (SARIMAX & LightGBM) to capture trends and seasonality.",
+          "Integrated forecasting pipeline with a Databricks Model Serving Endpoint for low-latency predictions.",
+          "Built and deployed a responsive frontend web application on Netlify with real-time analytics dashboards."
+        ],
+        github: "https://github.com/mohitsharmaa21/Demand-Forecasting-AI",
+        kaggle: "https://www.kaggle.com/code/mohitsharma7231/demand-forecasting-sarimax-model"
       },
     ],
     [isMobile]
@@ -204,7 +206,7 @@ export default function Projects() {
                   className="inline-block px-6 py-2.5 sm:px-8 sm:py-3 font-bold rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white text-xs sm:text-sm hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:scale-105 transition-all duration-300"
                   aria-label={`View Live ${activeProject?.title}`}
                 >
-                  View Live Project
+                  {activeProject?.title === "Demand Forecasting AI" ? "Live Demo" : "View Live Project"}
                 </a>
               )}
               {activeProject?.github && (

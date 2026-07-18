@@ -15,7 +15,7 @@ const socials = [
   { Icon: SiKaggle, label: "Kaggle", href: "https://www.kaggle.com/mohitsharma7231", glow: "rgba(6,182,212,0.2)" },
   { Icon: FaLinkedinIn, label: "LinkedIn", href: "https://www.linkedin.com/in/mohit-sharma2005", glow: "rgba(59,130,246,0.2)" },
   { Icon: SiOrcid, label: "ORCID", href: "https://orcid.org/0009-0007-3823-0898", glow: "rgba(163,230,53,0.2)" },
-  { Icon: FaFileLines, label: "Resume", href: "https://drive.google.com/file/d/1xR7dOvLYjWXLquoOi4FGBPBq2HekyZ7a/view?usp=drive_link", glow: "rgba(192,132,252,0.2)" },
+  { Icon: FaFileLines, label: "Resume", href: "https://drive.google.com/file/d/1F28YWbQ8FCX3h6HqAeioSUXSOWRLb82A/view?usp=drive_link", glow: "rgba(192,132,252,0.2)" },
 ];
 
 export default function Contact() {
